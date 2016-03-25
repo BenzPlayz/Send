@@ -1,0 +1,31 @@
+package me.benzplayz;
+
+import lilypad.client.connect.api.Connect;
+import lilypad.client.connect.api.request.RequestException;
+import lilypad.client.connect.api.request.impl.RedirectRequest;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+
+public class Send
+{
+  public main m;
+  
+  public Send(main m)
+  {
+    this.m = m;
+  }
+  
+  public void sendplayer(String p, String server)
+  {
+    try
+    {
+      this.m.connect.request(new RedirectRequest(server, p));
+    }
+    catch (RequestException e)
+    {
+      Bukkit.getPlayer(p).sendMessage(ChatColor.GOLD + "Error: Couldn't sent you to " + ChatColor.RED + server);
+      e.printStackTrace();
+    }
+  }
+}
